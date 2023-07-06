@@ -1,4 +1,4 @@
-local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/huggywuggylogi03/My-Repository/main"))()
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/huggywuggylogi03/My-Repository/main/main"))()
 
 local GUI = Mercury:Create{
     Name = "Test",
