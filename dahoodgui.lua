@@ -1,4 +1,19 @@
-local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt%22)()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Player = game.Players.LocalPlayer
+local Window = OrionLib:MakeWindow({Name = "Key System", HidePremium = false, SaveConfig = true, IntroEnabled = false})
+
+OrionLib:MakeNotification({
+    Name = "Logged in",
+    Content = "You are logged in as "..Player.DisplayName..".",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+
+_G.Key = "woke1"
+_G.KeyInput = "string"
+
+function MakeScriptHub()
+    local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
 
 local win = DiscordLib:Window("🦕 woKES hub beta")
 
@@ -78,4 +93,51 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/FilteringEnabled/Name
 serv:Channel("credits")
 
 
-win:Server("Main", "http://www.roblox.com/asset/?id=6031075938%22)
+win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
+end
+
+function CorrectKeyNotification()
+OrionLib:MakeNotification({
+    Name = "Correct Key",
+    Content = "You Have Entered The Correct Key! "..Player.DisplayName..".",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+end
+function IncorrectKeyNotification()
+OrionLib:MakeNotification({
+    Name = "Incorrect Key",
+    Content = "You Have Entered The Incorrect Key! "..Player.DisplayName..".",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+
+end
+
+local Tab = Window:MakeTab({
+    Name = "Key",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+
+Tab:AddTextbox({
+    Name = "Enter Key",
+    Default = "Enter Key",
+    TextDisappear = true,
+    Callback = function(Value)
+        _G.KeyInput = Value
+    end
+})
+
+Tab:AddButton({
+    Name = "Check Key",
+    Callback = function()
+          if _G.KeyInput == _G.Key then
+      MakeScriptHub()
+      CorrectKeyNotification()
+      else
+          IncorrectKeyNotification()
+         end
+      end
+})
